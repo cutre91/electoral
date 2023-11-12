@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votación Electoral - Encuesta Gratis</title>
     
-    <!-- Etiqueta meta para la descripción de la página -->
-    <meta name="description" content="Participa en nuestra encuesta electoral y comparte para ver los resultados. Elige a tu candidato favorito para presidente.">
-    
-    <!-- Etiqueta meta para el logo -->
-    <meta property="og:image" content="logo.jpg">
-    
     <!-- Estilos CSS para dar formato a la página de inicio -->
     <style>
         body {
@@ -70,7 +64,7 @@
         <p>¿A quién votarías como presidente?</p>
         <div class="candidates">
             <div class="candidate">
-                <img src="candidato1.jpg" alt="Candidato 1">
+                <img src="milei.jpg" alt="Candidato 1">
                 <h2>Candidato 1</h2>
                 <button class="vote-button" onclick="votar(1)">Votar por Candidato 1</button>
                 <p>Votos: <span id="votosCandidato1">0</span></p>
@@ -78,15 +72,15 @@
             <div class="vs">
                 <img src="vs.png" alt="vs">
             </div>
-            <div class "candidate">
-                <img src="candidato2.jpg" alt="Candidato 2">
+            <div class="candidate">
+                <img src="Massa.jpeg" alt="Candidato 2">
                 <h2>Candidato 2</h2>
                 <button class="vote-button" onclick="votar(2)">Votar por Candidato 2</button>
                 <p>Votos: <span id="votosCandidato2">0</span></p>
             </div>
         </div>
-        <button class="result-button" onclick="verResultados()">Ver Resultados</button>
         <button class="share-button" onclick="compartirEnWhatsApp()">Compartir en WhatsApp</button>
+        <button class="result-button" onclick="verResultados()">Ver Resultados</button>
     </div>
 
     <script>
@@ -107,7 +101,7 @@
         function verResultados() {
             if (usuarioCompartio) {
                 // Mostrar los resultados si el usuario compartió
-                window.location.href = 'resultados.html';
+                window.location.href = 'https://cuty.io/kevtun';
             } else {
                 alert('Debes compartir en WhatsApp para ver los resultados.');
             }
@@ -115,13 +109,16 @@
 
         function compartirEnWhatsApp() {
             // Crear un mensaje con el enlace para compartir
-            const mensaje = '¡Participa en nuestra encuesta electoral y comparte para ver los resultados! Visita: ' + window.location.href;
+            const mensaje = '¡Participa en nuestra encuesta electoral y comparte para ver los resultados! Visita: https://infogram91.github.io/electoral/candidatos ' + window.location.href;
 
             // Crear un enlace para compartir en WhatsApp
-            const enlaceWhatsApp = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(mensaje);
+            const enlaceWhatsApp = 'whatsapp://send?text=' + encodeURIComponent(mensaje);
 
-            // Redirigir a WhatsApp para compartir
+            // Abrir WhatsApp con el mensaje
             window.location.href = enlaceWhatsApp;
+
+            // Marcar al usuario como que ha compartido
+            usuarioCompartio = true;
         }
     </script>
 </body>
