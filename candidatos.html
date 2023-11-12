@@ -6,68 +6,17 @@
     <title>Votación Electoral - Encuesta Gratis</title>
     
     <!-- Etiqueta meta para la descripción de la página -->
-    <meta name="description" content="Participa en nuestra encuesta electoral y comparte para ver los resultados. Elige a tu candidato favorito para presidente.">
-    <!-- Etiqueta favicon para el ícono del sitio -->
-    <link rel="icon" href="logo.jpg" type="image/x-icon">
-    <link rel="shortcut icon" href="logo.jpg">
+    <meta name="description" content="Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado. Elige a tu candidato favorito para presidente.">
     
     <!-- Etiqueta meta para el logo -->
-    <meta property="og:image" content="logo.jpg">
-    <link href="logo.jpg" href="https://infogram91.github.io/electoral/logo.jpg" rel="icon" alt="25px"/>
+    <meta property="og:image" content="ruta-a-tu-logo.png">
+    
+    <!-- Etiqueta favicon para el ícono del sitio -->
+    <link rel="icon" href="ruta-al-tu-icono.ico" type="image/x-icon">
+    
     <!-- Estilos CSS para dar formato a la página de inicio -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        
-        h1 {
-            color: #007BFF;
-        }
-        
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .candidates {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .candidate {
-            margin: 20px;
-            border: 2px solid #333;
-            padding: 10px;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        .vs {
-            margin: 0 20px;
-        }
-
-        .vote-button, .result-button, .share-button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .vote-button:hover, .result-button:hover, .share-button:hover {
-            background-color: #0056b3;
-        }
-
-        .share-button {
-            text-decoration: none; /* Quital el subrayado */
-        }
+        /* Tus estilos CSS aquí */
     </style>
 </head>
 <body>
@@ -77,29 +26,28 @@
         <p>¿A quién votarías como presidente?</p>
         <div class="candidates">
             <div class="candidate">
-                <img src="milei.jpg" alt="Candidato 1">
-                <h2>Mileidy</h2>
-                <button class="vote-button" onclick="votar(1)">Votar por Candidato 1</button>
+                <img src="candidato1.jpg" alt="Candidato 1">
+                <h2>Candidato 1</h2>
+                <a class="vote-button" href="javascript:votar(1)">Votar por Candidato 1</a>
                 <p>Votos: <span id="votosCandidato1">0</span></p>
             </div>
             <div class="vs">
                 <img src="vs.png" alt="vs">
             </div>
             <div class="candidate">
-                <img src="Massa.jpeg" alt="Candidato 2">
-                 <h2>Candidato 2</h2>
+                <img src="candidato2.jpg" alt="Candidato 2">
+                <h2>Candidato 2</h2>
                 <a class="vote-button" href="javascript:votar(2)">Votar por Candidato 2</a>
                 <p>Votos: <span id="votosCandidato2">0</span></p>
             </div>
         </div>
-        <button class="result-button" onclick="verResultados()">Ver Resultados</button>
         <a class="share-button" href="javascript:compartir()">Compartir en WhatsApp</a>
     </div>
 
     <script>
         let votosCandidato1 = 0;
         let votosCandidato2 = 0;
-        let usuarioCompartio = false;
+        let compartidoVeces = 0;
 
         function votar(candidato) {
             if (candidato === 1) {
@@ -111,19 +59,10 @@
             }
         }
 
-        function verResultados() {
-            if (usuarioCompartio) {
-                // Redirigir a la página de resultados si el usuario compartió
-                window.location.href = 'resultados.html';
-            } else {
-                alert('Debes compartir en WhatsApp para ver los resultados.');
-            }
-        }
-
         function compartir() {
             // Compartir en WhatsApp
             const compartirURL = 'https://cuty.io/kevtun'; // URL que se compartirá
-            const mensaje = '¡Participa en nuestra encuesta electoral y comparte para ver los resultados! Visita: ' + compartirURL;
+            const mensaje = '¡Participa en nuestra encuesta electoral y comparte en WhatsApp para desbloquear el enlace acortado! Visita: ' + compartirURL;
             
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 // Si es un dispositivo móvil, abrir la aplicación de WhatsApp
@@ -132,12 +71,15 @@
                 // Si es una computadora, abrir WhatsApp Web
                 window.open('https://web.whatsapp.com/send?text=' + encodeURIComponent(mensaje), '_blank');
             }
+            
+            // Incrementar el contador de veces compartidas
+            compartidoVeces++;
+
+            // Si se comparte tres veces, redirigir al enlace acortado
+            if (compartidoVeces >= 3) {
+                window.location.href = 'https://cuty.io/kevtun';
+            }
         }
     </script>
 </body>
 </html>
-
-
-
-
-
