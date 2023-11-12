@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votación Electoral - Encuesta Gratis</title>
+    
+    <!-- Estilos CSS para dar formato a la página de inicio -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #007BFF;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .candidates {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .candidate {
+            margin: 20px;
+            border: 2px solid #333;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .vs {
+            margin: 0 20px;
+        }
+
+        .vote-button, .share-button, .result-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .vote-button:hover, .share-button:hover, .result-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Encuesta Electoral</h1>
+    
+    <div class="container">
+        <p>¿A quién votarías como presidente?</p>
+        <div class="candidates">
+            <div class="candidate">
+                <img src="milei.jpg" alt="Candidato 1">
+                <h2>Milei</h2>
+                <button class="vote-button" onclick="votar(1)">Votar por Candidato 1</button>
+                <p>Votos: <span id="votosCandidato1">0</span></p>
+            </div>
+            <div class="vs">
+                <img src="vs.png" alt="vs">
+            </div>
+            <div class="candidate">
+                <img src="Massa.jpeg" alt="Candidato 2">
+                <h2>Massa</h2>
+                <button class="vote-button" onclick="votar(2)">Votar por Candidato 2</button>
+                <p>Votos: <span id="votosCandidato2">0</span></p>
+            </div>
+        </div>
+        <button class="share-button" onclick="compartirEnWhatsApp()">Compartir en WhatsApp</button>
+        <button class="result-button" onclick="verResultados()">Ver Resultados</button>
+    </div>
+
+    <script>
+        let votosCandidato1 = 0;
+        let votosCandidato2 = 0;
+        let usuarioCompartio = false;
+
+        function votar(candidato) {
+            if (candidato === 1) {
+                votosCandidato1++;
+                document.getElementById('votosCandidato1').innerText = votosCandidato1;
+            } else if (candidato === 2) {
+                votosCandidato2++;
+                document.getElementById('votosCandidato2').innerText = votosCandidato2;
+            }
+        }
+
+        function verResultados() {
+            if (usuarioCompartio) {
+                // Mostrar los resultados si el usuario compartió
+                window.location.href = 'resultados.html';
+            } else {
+                alert('Debes compartir en WhatsApp para ver los resultados.');
+            }
+        }
+
+        function compartirEnWhatsApp() {
+            // Crear un mensaje con el enlace para compartir
+            const mensaje = '¡Participa en nuestra encuesta electoral y comparte para ver los resultados! Visita: ' + window.location.href;
+
+            // Crear un enlace para compartir en WhatsApp
+            const enlaceWhatsApp = 'whatsapp://send?text=' + encodeURIComponent(mensaje);
+
+            // Abrir WhatsApp con el mensaje
+            window.location.href = enlaceWhatsApp;
+
+            // Marcar al usuario como que ha compartido
+            usuarioCompartio = true;
+        }
+    </script>
+</body>
+</html>

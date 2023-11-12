@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de la Votación</title>
+</head>
+<body>
+    <h1>Resultados de la Votación</h1>
+    
+    <div id="resultados">
+        <!-- Aquí puedes mostrar los resultados de la votación -->
+        <p>Resultado 1: X votos</p>
+        <p>Resultado 2: Y votos</p>
+        <!-- Agrega más contenido de resultados aquí -->
+    </div>
+
+    <script>
+        // Comprobar si el parámetro "verResultados" está presente en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('verResultados') && urlParams.get('verResultados') === 'si') {
+            // Mostrar los resultados si el parámetro está presente
+            document.getElementById('resultados').style.display = 'block';
+        } else {
+            // Redirigir al usuario a la página principal si el parámetro no está presente
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
