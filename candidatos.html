@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votación Electoral - Encuesta Gratis</title>
     
+    <!-- Etiqueta meta para la descripción de la página -->
+    <meta name="description" content="Participa en nuestra encuesta electoral y comparte para ver los resultados. Elige a tu candidato favorito para presidente.">
+    
+    <!-- Etiqueta meta para el logo -->
+    <meta property="og:image" content="ruta-a-tu-logo.png">
+    
     <!-- Estilos CSS para dar formato a la página de inicio -->
     <style>
         body {
@@ -41,7 +47,7 @@
             margin: 0 20px;
         }
 
-        .vote-button, .share-button, .result-button {
+        .vote-button, .result-button, .share-button {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
@@ -52,8 +58,12 @@
             border-radius: 5px;
         }
 
-        .vote-button:hover, .share-button:hover, .result-button:hover {
+        .vote-button:hover, .result-button:hover, .share-button:hover {
             background-color: #0056b3;
+        }
+
+        .share-button {
+            text-decoration: none; /* Quital el subrayado */
         }
     </style>
 </head>
@@ -65,7 +75,7 @@
         <div class="candidates">
             <div class="candidate">
                 <img src="milei.jpg" alt="Candidato 1">
-                <h2>Candidato 1</h2>
+                <h2>Mileidy</h2>
                 <button class="vote-button" onclick="votar(1)">Votar por Candidato 1</button>
                 <p>Votos: <span id="votosCandidato1">0</span></p>
             </div>
@@ -74,13 +84,13 @@
             </div>
             <div class="candidate">
                 <img src="Massa.jpeg" alt="Candidato 2">
-                <h2>Candidato 2</h2>
+                <h2>Alita de Pollo</h2>
                 <button class="vote-button" onclick="votar(2)">Votar por Candidato 2</button>
                 <p>Votos: <span id="votosCandidato2">0</span></p>
             </div>
         </div>
-        <button class="share-button" onclick="compartirEnWhatsApp()">Compartir en WhatsApp</button>
         <button class="result-button" onclick="verResultados()">Ver Resultados</button>
+        <a class="share-button" href="https://web.whatsapp.com/send?text=¡Participa en nuestra encuesta electoral y comparte para ver los resultados! Visita: https://infogram91.github.io/electoral/candidatos">Compartir en WhatsApp</a>
     </div>
 
     <script>
@@ -105,20 +115,6 @@
             } else {
                 alert('Debes compartir en WhatsApp para ver los resultados.');
             }
-        }
-
-        function compartirEnWhatsApp() {
-            // Crear un mensaje con el enlace para compartir
-            const mensaje = '¡Participa en nuestra encuesta electoral y comparte para ver los resultados! Visita: https://infogram91.github.io/electoral/candidatos' + window.location.href;
-
-            // Crear un enlace para compartir en WhatsApp
-            const enlaceWhatsApp = 'whatsapp://send?text=' + encodeURIComponent(mensaje);
-
-            // Abrir WhatsApp con el mensaje
-            window.location.href = enlaceWhatsApp;
-
-            // Marcar al usuario como que ha compartido
-            usuarioCompartio = true;
         }
     </script>
 </body>
