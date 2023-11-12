@@ -16,68 +16,125 @@
     
     <!-- Estilos CSS para dar formato a la página de inicio -->
     <style>
-        /* Tus estilos CSS aquí */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .candidates {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .candidate {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .candidate img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .vs {
+            flex: 1;
+            text-align: center;
+            font-size: 24px;
+        }
+        
+        .vote-button, .share-button {
+            display: block;
+            text-align: center;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .vote-button:hover, .share-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <h1>Encuesta Electoral</h1>
     
     <div class="container">
-        <p>¿A quién votarías como presidente?</p>
+        <center><p>¿A quién votarías como presidente?</p>
         <div class="candidates">
             <div class="candidate">
-                <img src="candidato1.jpg" alt="Candidato 1">
-                <h2>Candidato 1</h2>
-                <a class="vote-button" href="javascript:votar(1)">Votar por Candidato 1</a>
+                <img src="milei.jpg" alt="Candidato 1">
+                <h2>Milei</h2>
+                <a class="vote-button" href="javascript:votar(1)">Votar por Milei</a>
                 <p>Votos: <span id="votosCandidato1">0</span></p>
             </div>
             <div class="vs">
                 <img src="vs.png" alt="vs">
             </div>
             <div class="candidate">
-                <img src="candidato2.jpg" alt="Candidato 2">
-                <h2>Candidato 2</h2>
-                <a class="vote-button" href="javascript:votar(2)">Votar por Candidato 2</a>
+                <img src="Massa.jpeg" alt="Candidato 2">
+                <h2>Massa</h2>
+                <a class="vote-button" href="javascript:votar(2)">Votar por Massa</a>
                 <p>Votos: <span id="votosCandidato2">0</span></p>
             </div>
         </div>
         <a class="share-button" href="javascript:compartir()">Compartir en WhatsApp</a>
+        <p>Compartido: <span id="compartidoVeces">0</span> veces</p>
     </div>
 
     <script>
         let votosCandidato1 = 0;
         let votosCandidato2 = 0;
         let compartidoVeces = 0;
+        let usuarioYaVoto = false;
 
         function votar(candidato) {
-            if (candidato === 1) {
-                votosCandidato1++;
-                document.getElementById('votosCandidato1').innerText = votosCandidato1;
-            } else if (candidato === 2) {
-                votosCandidato2++;
-                document.getElementById('votosCandidato2').innerText = votosCandidato2;
+            if (!usuarioYaVoto) {
+                if (candidato === 1) {
+                    votosCandidato1++;
+                    document.getElementById('votosCandidato1').innerText = votosCandidato1;
+                } else if (candidato === 2) {
+                    votosCandidato2++;
+                    document.getElementById('votosCandidato2').innerText = votosCandidato2;
+                }
+                usuarioYaVoto = true;
+            } else {
+                alert("Ya has votado, solo se permite un voto por usuario.");
             }
         }
 
         function compartir() {
-            // Compartir en WhatsApp
-            const compartirURL = 'https://cuty.io/kevtun'; // URL que se compartirá
-            const mensaje = '¡Participa en nuestra encuesta electoral y comparte en WhatsApp para desbloquear el enlace acortado! Visita: ' + compartirURL;
-            
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Si es un dispositivo móvil, abrir la aplicación de WhatsApp
-                window.location.href = 'whatsapp://send?text=' + encodeURIComponent(mensaje);
-            } else {
-                // Si es una computadora, abrir WhatsApp Web
-                window.open('https://web.whatsapp.com/send?text=' + encodeURIComponent(mensaje), '_blank');
-            }
-            
-            // Incrementar el contador de veces compartidas
             compartidoVeces++;
+            document.getElementById('compartidoVeces').innerText = compartidoVeces;
 
-            // Si se comparte tres veces, redirigir al enlace acortado
             if (compartidoVeces >= 3) {
-                window.location.href = 'https://cuty.io/kevtun';
+                alert("Has compartido tres veces. Redirigiendo al enlace acortado...");
+                window.location.href = "https://cuty.io/kevtun";
+            } else {
+                const mensaje = "Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado: https://infogram91.github.io/electoral/candidatos";
+                window.location.href = `whatsapp://send?text=${encodeURIComponent(mensaje)}`;
+                alert("Compartido exitosamente " + compartidoVeces + " veces.");
             }
         }
     </script>
