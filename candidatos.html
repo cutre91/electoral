@@ -81,7 +81,7 @@
     <h1>Encuesta Electoral</h1>
     
     <div class="container">
-        <p>¿A quién votarías como presidente?</p>
+        <center><p>¿A quién votarías como presidente?</p>
         <div class="candidates">
             <div class="candidate">
                 <img src="milei.jpg" alt="Candidato 1">
@@ -99,7 +99,8 @@
                 <p>Votos: <span id="votosCandidato2">0</span></p>
             </div>
         </div>
-        <a class="share-button" href="javascript:compartir()">Compartir en WhatsApp</a>
+        <a class="share-button" href="javascript:compartir('mobile')">Compartir en WhatsApp (Móvil)</a>
+        <a class="share-button" href="javascript:compartir('web')">Compartir en WhatsApp (Web)</a>
         <p>Compartido: <span id="compartidoVeces">0</span> veces</p>
     </div>
 
@@ -108,10 +109,9 @@
         let votosCandidato2 = 0;
         let compartidoVeces = 0;
         let usuarioYaVoto = false;
-        let desbloqueado = false;
 
         function votar(candidato) {
-            if (!usuarioYaVoto && !desbloqueado) {
+            if (!usuarioYaVoto) {
                 if (candidato === 1) {
                     votosCandidato1++;
                     document.getElementById('votosCandidato1').innerText = votosCandidato1;
@@ -120,28 +120,35 @@
                     document.getElementById('votosCandidato2').innerText = votosCandidato2;
                 }
                 usuarioYaVoto = true;
-            } else if (desbloqueado) {
-                alert("Ya has desbloqueado el enlace. ¡Gracias por votar!");
             } else {
                 alert("Ya has votado, solo se permite un voto por usuario.");
             }
         }
 
-        function compartir() {
-            if (usuarioYaVoto && compartidoVeces < 3 && !desbloqueado) {
+        function compartir(tipo) {
+            if (votosCandidato1 + votosCandidato2 > 0) {
+                // Ventana emergente de alerta
+                alert("Compartir en WhatsApp");
+
+                // Incrementar el contador de compartidos
                 compartidoVeces++;
-                document.getElementById('compartidoVeces').innerText = compartidoVeces;
 
                 if (compartidoVeces >= 3) {
-                    alert("Has compartido tres veces. Ahora se ha desbloqueado el enlace.");
-                    desbloqueado = true;
+                    // Si se ha compartido tres veces, redirigir al acortador
+                    window.location.href = "https://cuty.io/kevtun";
                 } else {
-                    alert("Compartido exitosamente " + compartidoVeces + " veces.");
+                    // Mostrar un mensaje en función del tipo de compartición
+                    if (tipo === 'mobile') {
+                        window.open("whatsapp://send?text=Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado: https://infogram91.github.io/electoral/candidatos");
+                    } else if (tipo === 'web') {
+                        window.open("https://web.whatsapp.com/send?text=Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado: https://infogram91.github.io/electoral/candidatos");
+                    }
+
+                    // Actualizar el contador de compartidos
+                    document.getElementById('compartidoVeces').innerText = compartidoVeces;
                 }
-            } else if (!usuarioYaVoto) {
-                alert("Debes votar antes de compartir.");
-            } else if (desbloqueado) {
-                alert("Ya has desbloqueado el enlace. ¡Gracias por tu participación!");
+            } else {
+                alert("Debes votar al menos una vez antes de compartir.");
             }
         }
     </script>
