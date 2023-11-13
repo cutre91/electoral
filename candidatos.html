@@ -90,6 +90,9 @@
                 <a class="vote-button" href="javascript:votar(1)">Votar por Milei</a>
                 <p>Votos: <span id="votosCandidato1">0</span></p>
             </div>
+            <div class="vs">
+                <img src="vs.png" widht="24px" alt="24px">
+            </div>
             <div class="candidate">
                 <img src="Massa.jpeg" alt="Candidato 2">
                 <h2>Massa</h2>
@@ -98,7 +101,7 @@
             </div>
         </div>
         <div class="message-box">
-            <p>Para ver cómo va la encuesta general, debes compartir 3 veces el contenido en WhatsApp y registrate en el sitio.</p>
+            <p>Para ver cómo va la encuesta general, debes compartir 3 veces el contenido en WhatsApp y pasar el acortador.</p>
         </div>
         <a class="share-button" href="javascript:compartir('mobile')">Compartir en WhatsApp (Móvil)</a>
         <a class="share-button" href="javascript:compartir('web')">Compartir en WhatsApp (Web)</a>
@@ -142,7 +145,7 @@
                     if (tipo === 'mobile') {
                         window.open("whatsapp://send?text=Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado: https://infogram91.github.io/electoral/candidatos");
                     } else if (tipo === 'web') {
-                        window.open("https://web.whatsapp.com/send?text=Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado: https://infogram91.github.io/electoral/candidatos");
+                        window.open("https://web.whatsapp.com/send?text=Participa en nuestra encuesta electoral y comparte 3 veces en WhatsApp para desbloquear el sitio OFicial de conteo de votos completa el registro gratuito: https://infogram91.github.io/electoral/candidatos");
                     }
 
                     // Actualizar el contador de compartidos
