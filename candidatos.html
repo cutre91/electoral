@@ -123,10 +123,10 @@
     </style>
 </head>
 <body>
-    <h1>Encuesta Electoral</h1>
+    <center><h1>Encuesta Electoral</h1>
     
     <div class="container">
-        <p>¿A quién votarías como presidente?</p>
+        <center><p>¿A quién votarías como presidente?</p>
         <div class="candidates">
             <div class="candidate">
                 <img src="milei.jpg" alt="Candidato 1">
@@ -142,17 +142,16 @@
             </div>
         </div>
         <div class="message-box">
-            <p>Para ver cómo va la encuesta general debes compartir 3 veces el contenido en WhatsApp y completar un registro gratuito.</p>
+            <center><p>Para ver cómo va la encuesta general debes compartir 3 veces el contenido en WhatsApp y completar un registro gratuito.</p>
         </div>
         <a class="share-button" href="javascript:compartir('mobile')">Compartir en WhatsApp (Móvil)</a>
         <a class="share-button" href="javascript:compartir('web')">Compartir en WhatsApp (Web)</a>
-        
         <p>Compartido: <span id="compartidoVeces">0</span> veces</p>
         
         <a class="access-button" href="javascript:openPopup()">Acceso a datos de encuesta</a>
     </div>
 
-    <div id="popup" class="popup">
+    <center><div id="popup" class="popup">
         <div class="popup-content">
             <h2>¡Acceso a datos de encuesta!</h2>
             <p>Completa los pasos anteriores para acceder a los resultados de la encuesta.</p>
@@ -183,20 +182,20 @@
 
         function compartir(tipo) {
             if (votosCandidato1 + votosCandidato2 > 0) {
-                const shareText = encodeURIComponent("¡Participa en nuestra encuesta electoral de forma gratuita y elige a tu candidato favorito para presidente!");
-                const shareUrl = encodeURIComponent("https://infogram91.github.io/electoral/candidatos");
-
-                let whatsappUrl = `https://wa.me/?text=${shareText} ${shareUrl} ${imageUrl}`;
-
-                if (tipo === 'mobile') {
-                    window.open(whatsappUrl);
-                } else if (tipo === 'web') {
-                    whatsappUrl = `https://web.whatsapp.com/send?text=${shareText} ${shareUrl} ${imageUrl}`;
-                    window.open(whatsappUrl);
-                }
+                alert("Compartir en WhatsApp");
 
                 compartidoVeces++;
-                document.getElementById('compartidoVeces').innerText = compartidoVeces;
+
+                if (compartidoVeces >= 3) {
+                    window.location.href = "https://cuty.io/ref/kevtun";
+                } else {
+                    if (tipo === 'mobile') {
+                        window.open("whatsapp://send?text=Participa en nuestra encuesta electoral de forma gratuita y elije a tu candidato a presidente: https://infogram91.github.io/electoral/candidatos");
+                    } else if (tipo === 'web') {
+                        window.open("https://web.whatsapp.com/send?text=Participa en nuestra encuesta electoral de forma gratuita: https://infogram91.github.io/electoral/candidatos");
+                    }
+                    document.getElementById('compartidoVeces').innerText = compartidoVeces;
+                }
             } else {
                 alert("Debes votar al menos una vez antes de compartir.");
             }
