@@ -6,7 +6,7 @@
     <title>Votación Electoral - Encuesta Gratis</title>
     
     <!-- Etiqueta meta para la descripción de la página -->
-    <meta name="description" content="Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado. Elige a tu candidato favorito para presidente.">
+    <meta name="description" content="Participa en nuestra encuesta electoral de forma gratuita. Elige a tu candidato favorito para presidente.">
     
     <!-- Etiqueta meta para el logo -->
     <meta property="og:image" content="ruta-a-tu-logo.png">
@@ -90,9 +90,6 @@
                 <a class="vote-button" href="javascript:votar(1)">Votar por Milei</a>
                 <p>Votos: <span id="votosCandidato1">0</span></p>
             </div>
-            <div class="vs">
-                <img src="vs.png" widht="24px" alt="24px">
-            </div>
             <div class="candidate">
                 <img src="Massa.jpeg" alt="Candidato 2">
                 <h2>Massa</h2>
@@ -143,9 +140,9 @@
                 } else {
                     // Mostrar un mensaje en función del tipo de compartición
                     if (tipo === 'mobile') {
-                        window.open("whatsapp://send?text=Participa en nuestra encuesta electoral y comparte tres veces en WhatsApp para desbloquear el enlace acortado: https://infogram91.github.io/electoral/candidatos");
+                        window.open("whatsapp://send?text=Participa en nuestra encuesta electoral de forma gratiuta: https://infogram91.github.io/electoral/candidatos ");
                     } else if (tipo === 'web') {
-                        window.open("https://web.whatsapp.com/send?text=Participa en nuestra encuesta electoral y comparte 3 veces en WhatsApp para desbloquear el sitio OFicial de conteo de votos completa el registro gratuito: https://infogram91.github.io/electoral/candidatos");
+                        window.open("https://web.whatsapp.com/send?text=Participa en nuestra encuesta electoral de forma gratuita: https://infogram91.github.io/electoral/candidatos");
                     }
 
                     // Actualizar el contador de compartidos
